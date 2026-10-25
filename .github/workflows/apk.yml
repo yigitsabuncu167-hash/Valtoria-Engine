@@ -1,0 +1,32 @@
+name: Android APK
+
+on:
+  workflow_dispatch:      # elle başlatma düğmesi
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Android workload kur
+        run: dotnet workload install android
+
+      - name: APK derle
+        run: dotnet publish MyGame/MyGame.csproj -f net8.0-android -c Release -p:AndroidPackageFormat=apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: apk
+          path: "**/*.apk"
