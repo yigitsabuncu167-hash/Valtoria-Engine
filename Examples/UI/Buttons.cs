@@ -12,13 +12,13 @@ public class ButtonCreator
     TopColor = Color.Green;
     BottomColor = Color.Gray;
     BorderColor = Color.Black;
-  } 
-  
-  public void Draw()
-  {
-  Raylib.DrawRectangle(100,50,200,80,Color.Blue);
   }
-}
+     public void Draw()
+     {
+        Raylib.DrawRectangle((float)x,(float)y,(int)width,(int)height,TopColor); // 100 x kordinatu 50 y kordinatı 200 genişlok 80 yukseklik
+     }
+
+
   //Button Name
   string ButtonName;
 
@@ -36,9 +36,10 @@ public class ButtonCreator
   Color TextBorder { get; set; }
 
   //Locations
-  float x { get; set; } = 30;
-  float y { get; set; } = 30;
+  int x { get; set; }
+  int y { get; set; }
 
   //Button ScaleSettings
   float width { get; set; } = 60 ;
   float height { get; set; } = 60 ;
+}
