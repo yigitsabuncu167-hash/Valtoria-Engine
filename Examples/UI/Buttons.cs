@@ -6,12 +6,7 @@ public class ButtonCreator
 {
   public ButtonCreator()
   {
-    ButtonName = "onayla";
-    ButtonsColorGardient = true;
-    ButtonsColorNormal = false;
-    TopColor = Color.Green;
-    BottomColor = Color.Gray;
-    BorderColor = Color.Black;
+    //Buraya degwrler eklenir
   }
      public void Draw()
      {
