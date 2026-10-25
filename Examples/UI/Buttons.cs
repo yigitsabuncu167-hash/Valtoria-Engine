@@ -40,6 +40,6 @@ public class ButtonCreator
   int y { get; set; }
 
   //Button ScaleSettings
-  float width { get; set; } = 60 ;
-  float height { get; set; } = 60 ;
+  int width { get; set; } = 60 ;
+  int height { get; set; } = 60 ;
 }
