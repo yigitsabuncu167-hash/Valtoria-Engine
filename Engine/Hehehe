@@ -1,2 +1,6 @@
+using System;
+using GraphicWrapper;
+using Raylib_cs;
+
 
 GraphicsWrapper.UnloadImagee(myImage)
