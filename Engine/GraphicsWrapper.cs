@@ -6,12 +6,12 @@ namespace GraphicWrapper
     //Image loading functions
     public static Image LoadImage( string filename)
     {
-      return Raylib.LoadImage(string filename);
+      return Raylib.LoadImage(filename);
     }
     
     public static Image LoadImageRaw(string filename,int width,int height,int format,int headersize);
     {
-      return  Raylib.LoadImageRaw(string string filename,width,height,format,headersize);
+      return  Raylib.LoadImageRaw(filename,width,height,format,headersize);
     }
     
     public static Image LoadImageAnim(string filename,int frames);
@@ -41,17 +41,17 @@ namespace GraphicWrapper
 
     public static bool IsImageValid(Image image)
     {
-      return Raylib.LoadImage(image);
+      return Raylib.IsImageValid(image);
     }
     
     public static void UnloadImagee(Image image)
     {
-      Raylib.LoadImage(image);
+      Raylib.UnloadImage(image);
     }
 
-    public void ExportImage(Image image,string filename)
+    public static bool ExportImage(Image image,string filename)
     {
-      return Raylib.LoadImage(filename,image);
+      return Raylib.ExportImage(filename,image);
     }
 
       
