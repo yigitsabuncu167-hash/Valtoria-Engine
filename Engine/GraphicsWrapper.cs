@@ -53,5 +53,3 @@ namespace GraphicWrapper
     {
       return Raylib.ExportImage(filename,image);
     }
-
-      
