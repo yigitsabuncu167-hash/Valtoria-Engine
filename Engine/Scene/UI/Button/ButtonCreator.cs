@@ -4,10 +4,6 @@ using Raylib_cs;
 
 public class ButtonCreator
 {
-  public ButtonCreator()
-  {
-    //Buraya degwrler eklenir
-  }
      public void Draw()
      {
         Raylib.DrawRectangle((int)x,(int)y,(int)width,(int)height,TopColor); // 100 x kordinatu 50 y kordinatı 200 genişlok 80 yukseklik
