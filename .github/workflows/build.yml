@@ -1,17 +1,8 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: .NET
+name: Build Raylib Android APK
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    branches: ["*"]
-    paths-ignore:
-      - "README.md"
-      - ".github/ISSUE_TEMPLATE/**"
-
+    branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
@@ -19,41 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v7
+    - name: Kodlari Depodan Cek
+      uses: actions/checkout@v4
 
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v5
-        with:
-          dotnet-version: |
-            8.0.x
-            9.0.x
-            10.0.x
+    - name: .NET Ortamini Kur
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
 
-      - name: Create NuGet Package
-        run: dotnet pack Raylib-cs -c Release --output Raylib-cs/nuget
+    - name: .NET Android Is Yukunu Yukle
+      run: dotnet workload install android
 
-      - name: Restore + Install Built Package
-        run: |
-          dotnet restore
+    - name: Projeyi Derle ve APK Olustur
+      run: dotnet publish -c Release -f net8.0-android /p:AndroidKeyStore=false
 
-      - name: Run Tests
-        run: |
-          dotnet test --verbosity normal
-
-      - name: Upload NuGet Package As Artifact
-        uses: actions/upload-artifact@v7
-        with:
-          path: Raylib-cs/nuget/*
-
-      - name: Upload NuGet Package As Release
-        uses: softprops/action-gh-release@v3
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          files: Raylib-cs/nuget/*
-
-      - name: Publish to NuGet
-        if: startsWith(github.ref, 'refs/tags/')
-        run: |
-          dotnet nuget push \
-            Raylib-cs/nuget/* \
-            --api-key ${{secrets.NUGET_API_KEY}}
+    - name: APK Dosyasini Kaydet (Artifact)
+      uses: actions/upload-artifact@v4
+      with:
+        name: raylib-android-apk
+        path: '**/*.apk'
