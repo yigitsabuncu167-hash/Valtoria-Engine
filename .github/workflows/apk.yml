@@ -1,1 +1,32 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Kodlari Depodan Cek
+      uses: actions/checkout@v4
+
+    - name: .NET Ortamini Kur
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: .NET Android Is Yukunu Yukle
+      run: dotnet workload install android
+
+    - name: APK Derle
+      run: dotnet publish -c Release -f net8.0-android /p:AndroidKeyStore=false
+
+    - name: APK Dosyasini Kaydet (Artifact)
+      uses: actions/upload-artifact@v4
+      with:
+        name: android-apk
+        path: '**/*.apk'
 
