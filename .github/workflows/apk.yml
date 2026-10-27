@@ -13,10 +13,10 @@ jobs:
     - name: Kodlari Depodan Cek
       uses: actions/checkout@v4
 
-    - name: .NET 10 SDK'sini Kur
+    - name: .NET Ortamini Kur
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '10.0.x'
+        dotnet-version: '8.0.x'
 
     - name: .NET Android Is Yukunu Yukle
       run: dotnet workload install android
