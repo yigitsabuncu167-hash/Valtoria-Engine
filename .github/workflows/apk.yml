@@ -13,10 +13,11 @@ jobs:
     - name: Kodlari Depodan Cek
       uses: actions/checkout@v4
 
-    - name: .NET Ortamini Kur
+    - name: .NET 8 SDK'sini Yukle ve Sabitle
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
+        dotnet-quality: 'ga'
 
     - name: .NET Android Is Yukunu Yukle
       run: dotnet workload install android
@@ -29,4 +30,3 @@ jobs:
       with:
         name: raylib-android-apk
         path: '**/*.apk'
-
