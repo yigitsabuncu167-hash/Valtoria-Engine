@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Raylib Android APK
 
 on:
   push:
@@ -21,12 +21,12 @@ jobs:
     - name: .NET Android Is Yukunu Yukle
       run: dotnet workload install android
 
-    - name: APK Derle
+    - name: Projeyi Derle ve APK Olustur
       run: dotnet publish -c Release -f net8.0-android /p:AndroidKeyStore=false
 
     - name: APK Dosyasini Kaydet (Artifact)
       uses: actions/upload-artifact@v4
       with:
-        name: android-apk
+        name: raylib-android-apk
         path: '**/*.apk'
 
